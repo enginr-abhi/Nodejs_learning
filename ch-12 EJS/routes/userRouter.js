@@ -1,14 +1,16 @@
-const path = require('path');
 const express = require('express');
+const userRouter = express.Router();
+const path = require('path');
 const rootDir = require('../utils/pathUtil');
 const { registeredHomes } = require('./hostRouter');
-const userRouter = express.Router();
-userRouter.get("/", (req, res, next)=>{
-  console.log(req.url, req.method);
-  // res.sendFile(path.join(__dirname,'../' ,'views','home.html'));
-  console.log(registeredHomes);
-  // res.sendFile(path.join(rootDir,'views','home.html'));
-  res.render('home',{registeredHomes : registeredHomes,pageTitle:'airbnb Home',currentPage:'home' });
 
+
+userRouter.get("/", (req, res, next) => {
+  console.log(req.url, req.method, req.body);
+  console.log('registeredHomes', registeredHomes);
+  // res.sendFile(path.join(__dirname,'../' ,'views','home.html'));
+  // res.sendFile(path.join(rootDir, 'views', 'home.html'));
+  res.render('home',{registeredHomes: registeredHomes, pageTitle:'Available Homes', currentPage: 'Home'});
 })
+
 module.exports = userRouter;

@@ -17,10 +17,12 @@ app.use("/", (req, res, next) =>{
 //   console.log('Come in third middleware');
 //   res.send('<p>Come from third middleware</p>')
 // })
+
 app.get("/", (req, res, next) =>{
-  console.log('Handline / for GEt', req.url, req.method);
+  console.log('Handline / for GET', req.url, req.method);
  res.send('<h1>Welcome to first Middleware</h1>');
 })
+
 app.get("/contact-us", (req, res, next) =>{
   console.log('Come in fourth middleware');
   res.send(`<h1>Please enter your details</h1>
@@ -34,9 +36,11 @@ app.get("/contact-us", (req, res, next) =>{
 })
 
 app.post("/contact-us", (req, res, next) =>{
+  console.log('Handline / contact-us for POST', req.url, req.method);
   console.log('Come in fourth middleware');
   res.send('<h1>We will contact you shortly</h1>', req.url, req.method);
 })
+
 
 app.listen(PORT, ()=>{
   console.log(`server is running at http://localhost:${PORT}`);

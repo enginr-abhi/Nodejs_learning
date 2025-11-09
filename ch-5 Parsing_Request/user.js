@@ -24,23 +24,43 @@ const userRequestHandler = (req, res) => {
   }
   else if(req.url.toLowerCase() === '/submit-details' && req.method == "POST"){
     const body = [];
-  req.on('data',(chunk)=>{
-    console.log(chunk);
-    body.push(chunk);
+    req.on('data', (chunk)=>{
+      console.log(chunk);
+      body.push(chunk);
     })
-    req.on('end', () => {
-    const fullbody = Buffer.concat(body).toString();
-    console.log(fullbody);
-    const params = new URLSearchParams(fullbody);
-    // const bodyObject = {};
-    // for(const [key, value] of params.entries()){
-    // bodyObject[key] = value
-    // }
-    // console.log(bodyObject);
+    req.on('end', () =>{
+      const fullBody = Buffer.concat(body).toString();
+      console.log(fullBody);
+     const params =  new URLSearchParams(fullBody);
+     console.log(params);
+    //  const bodyObject = {};
+    //  for(const [key, value] of params.entries()){
+    //   bodyObject[key] = value;
+    //   console.log(`${key} : ${value}`);
+    //  }
+    //  console.log(bodyObject);
     const bodyObject = Object.fromEntries(params);
     console.log(bodyObject);
-    fs.writeFileSync('user.txt',JSON.stringify(bodyObject));
+      fs.writeFileSync('user.txt',JSON.stringify(bodyObject));
     })
+  //   const body = [];
+  // req.on('data',(chunk)=>{
+  //   console.log(chunk);
+  //   body.push(chunk);
+  //   })
+  //   req.on('end', () => {
+  //   const fullbody = Buffer.concat(body).toString();
+  //   console.log(fullbody);
+  //   const params = new URLSearchParams(fullbody);
+  //   // const bodyObject = {};
+  //   // for(const [key, value] of params.entries()){
+  //   // bodyObject[key] = value
+  //   // }
+  //   // console.log(bodyObject);
+  //   const bodyObject = Object.fromEntries(params);
+  //   console.log(bodyObject);
+  //   fs.writeFileSync('user.txt',JSON.stringify(bodyObject));
+  //   })
   
   res.statusCode = 302;
   res.setHeader('Location', '/')

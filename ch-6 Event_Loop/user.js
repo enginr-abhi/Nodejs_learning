@@ -40,7 +40,7 @@ const userRequestHandler = (req, res) => {
       // }
       const bodyObject = Object.fromEntries(params);
       console.log(bodyObject);
-      fs.writeFile("user-details.txt", JSON.stringify(bodyObject), (err) => {
+      fs.writeFile("user_details.txt", JSON.stringify(bodyObject), (err) => {
         if(err){
           console.log('error occured', err);
         }

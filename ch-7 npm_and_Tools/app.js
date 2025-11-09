@@ -1,5 +1,5 @@
 const http = require("http");
-const PORT = 3002;
+const PORT = 3003;
 const server = http.createServer((req, res) => {
   console.log(req);
   console.log(req.url, req.method, req.headers);

@@ -48,16 +48,53 @@
 //   console.log(req);
 // });
 
-const PORT = 3000;
-// server.listen(PORT, ()=>{
+// const PORT = 3000;
+// // server.listen(PORT, ()=>{
+// //  console.log(`server is running on address http://localhost:${PORT}`);
+// // })
+
+// const http = require('http');
+// const server = http.createServer((req, res)=>{
+//   console.log(req);
+//   console.log(res);
+// })
+
+// server.listen(PORT, () => {
 //  console.log(`server is running on address http://localhost:${PORT}`);
 // })
 
+
+// const http = require('http');
+// const server = http.createServer((req, res) => {
+//   console.log(req.url);
+//   console.log(req.method);
+//   console.log(req.headers);
+//   res.end('Hello from the server');
+// } );
+
+// const PORT = 3000;    
+// server.listen(PORT, () => {
+//   console.log(`server is running on address http://localhost:${PORT}`);
+// });
+
+// Compare this snippet from ch-2%20First%20Nodejs%20Program/first.js:    
+
 const http = require('http');
-const server = http.createServer((req, res)=>{
+// function requestListener(req, res){
+//   console.log(req);
+// }
+// http.createServer(requestListener)
+
+// http.createServer(function (req, res){
+//   console.log(req);
+// })
+const server = http.createServer((req, res) => {
   console.log(req);
-  console.log(res);
 })
-server.listen(PORT, ()=>{
- console.log(`server is running on address http://localhost:${PORT}`);
+// server.listen(3000);
+
+const PORT = 3000;
+server.listen(PORT, () => {
+ console.log(`server is running on address http://localhost:${PORT}/`);
 })
+
