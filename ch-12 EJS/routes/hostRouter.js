@@ -1,7 +1,9 @@
 const express = require('express');
 const hostRouter = express.Router();
+
 const path = require('path');
 const rootDir = require('../utils/pathUtil');
+
 hostRouter.get("/add-home", (req, res, next) => {
   console.log(req.url, req.method);
   // res.sendFile(path.join(rootDir,'views','addHome.html'));
@@ -16,7 +18,7 @@ hostRouter.post("/add-home", (req, res, next) => {
   registeredHomes.push(req.body);
   // res.sendFile(path.join(rootDir,'views','homeAdded.html'));
   // res.sendFile(path.join(rootDir,'views','homeAdded.html'));
-  res.render('homeAdded', {pageTitle:'Home Added Succefully',currentPage: 'homeAdded'});
+  res.render('homeAdded', {pageTitle:'Home Added Succefully', currentPage: 'homeAdded'});
 })
 
 exports.hostRouter = hostRouter;
