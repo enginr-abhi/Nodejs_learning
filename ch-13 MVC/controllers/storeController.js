@@ -4,7 +4,7 @@ exports.getIndex = (req, res, next) => {
   Home.fetchAll((registeredHomes) =>
     res.render("store/index", {
       registeredHomes: registeredHomes,
-      pageTitle: "airbnb Home",
+      pageTitle: "Airbnb Home",
       currentPage: "index",
     })
   );

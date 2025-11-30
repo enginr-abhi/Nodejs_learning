@@ -5,7 +5,10 @@ exports.getAddHome = (req, res, next) => {
   // console.log(req.url, req.method);
   // res.sendFile(path.join(rootDir,'views','addHome.html'));
   // res.render('/admin/addHome',{pageTitle:'Add Home to airbnb', currentPage: 'addHome'});
-  res.render('host/addHome',{pageTitle:'Add Home to airbnb', currentPage: 'addHome'});
+  res.render('host/add-home', { 
+    pageTitle:'Add Home to airbnb', 
+    currentPage: 'addHome',
+  });
 }
 
 // exports.getHomes = (req, res, next) => {
@@ -20,6 +23,21 @@ exports.getAddHome = (req, res, next) => {
 // }
 
 
+exports.postAddHome = (req, res, next) => {
+  // console.log(req.url, req.method, req.body)
+  // const home = new Home(req.body.homeName, req.body.price, req.body.location, req.body.rating, req.body.photoUrl);
+  const {houseName, price, location, rating, photoUrl} = req.body;
+  const home = new Home(houseName, price, location, rating, photoUrl);
+  home.save()
+  // registeredHomes.push(req.body);
+  // res.sendFile(path.join(rootDir,'views','homeAdded.html'));
+  // res.sendFile(path.join(rootDir,'views','homeAdded.html'));
+  res.render('host/home-added', {
+    pageTitle:'Home Added Succefully',
+    currentPage: 'homeAdded'}
+  );
+}
+
 
 exports.getHostHomes = (req, res, next) => {
   Home.fetchAll((registeredHomes) =>
@@ -31,14 +49,3 @@ exports.getHostHomes = (req, res, next) => {
   );
 };
 
-exports.postAddHome = (req, res, next) => {
-  // console.log(req.url, req.method, req.body)
-  // const home = new Home(req.body.homeName, req.body.price, req.body.location, req.body.rating, req.body.photoUrl);
-  const {houseName, price, location, rating, photoUrl} = req.body;
-  const home = new Home(houseName, price, location, rating, photoUrl);
-  home.save()
-  // registeredHomes.push(req.body);
-  // res.sendFile(path.join(rootDir,'views','homeAdded.html'));
-  // res.sendFile(path.join(rootDir,'views','homeAdded.html'));
-  res.render('host/home-added', {pageTitle:'Home Added Succefully',currentPage: 'homeAdded'});
-}

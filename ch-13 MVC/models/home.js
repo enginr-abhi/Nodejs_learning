@@ -1,7 +1,6 @@
 // core module
 const fs = require('fs');
 const path = require('path');
-
 const rootDir = require('../utils/pathUtil');
 
 // fake datbse as in memory array
@@ -17,17 +16,13 @@ module.exports  = class Home {
     this.photoUrl = photoUrl; 
  }
  save(){
-  Home.fetchAll((registeredHomes) => {
-  registeredHomes.push(this);
-  const homeDataPath = path.join(rootDir, "data", "homes.json");
-  fs.writeFile(homeDataPath, JSON.stringify(registeredHomes), (err)=>{
-    if(err){
-      console.log('Error while writing file', err);
-    }else{
-      console.log('File written successfully');
-    }
- })
-  })
+    Home.fetchAll((registeredHomes) => {
+      registeredHomes.push(this);
+      const homeDataPath = path.join(rootDir, "data", "homes.json");
+      fs.writeFile(homeDataPath, JSON.stringify(registeredHomes), (error) => {
+        console.log("File Writing Concluded", error);
+      });
+    });
 }
 
 //  static fetchAllHomes(){
@@ -40,16 +35,11 @@ module.exports  = class Home {
 //    return registeredHomes
 //   });
 // }
- static fetchAll(callback){
-  const homeDataPath = path.join(rootDir, "data", "homes.json");
-  fs.readFile(homeDataPath, (err, data) => {
-  //  console.log('File read', err, data);
-   callback(!err ? JSON.parse(data) : []);
-  //  if(!err){
-  //   callback(JSON.parse(data));
-  //  }else{
-  //   callback([]);
-  //  }
-  });
-}
+  static fetchAll(callback) {
+    const homeDataPath = path.join(rootDir, "data", "homes.json");
+    fs.readFile(homeDataPath, (err, data) => {
+      callback(!err ? JSON.parse(data) : []);
+    });
+  }
+
 }
